@@ -1,0 +1,21 @@
+<p>This is the partial for view 1.</p>
+
+<ul ng-repeat="question in questions" class="">
+    <li>
+                <div class="panel panel-default">
+                    <div class="panel-heading" ng-bind="question.question"></div>
+                    <form class="panel-body">
+                        <ul ng-repeat="answer in question.answers" class="list-unstyled">
+                            <li class="radio">
+                                <label>
+                                    <input type="radio" name="question_">
+                                    {{answer.value}}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    </li>
+</ul>
+
+<span ng-bind="test"></span>
