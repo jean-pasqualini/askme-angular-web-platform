@@ -12,12 +12,12 @@
     </div>
   </div>
   <div class="panel-footer">
-    <b>{{packages.length}}</b> packages correspondent à votre recherche
+    <b>{{packagesFiltered.length}}</b> packages correspondent à votre recherche
   </div>
 </div>
 
 <ul class="list-unstyled">
-  <li ng-repeat="package in packages | filter:query">
+  <li ng-repeat="package in packages | filter:query as packagesFiltered">
     <div class="panel panel-default">
       <div class="panel-heading">
         {{package.name}}

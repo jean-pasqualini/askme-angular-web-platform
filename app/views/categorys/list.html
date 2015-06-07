@@ -1,7 +1,16 @@
 <h1> Liste des catégories </h1>
-<ul class="list-unstyled" ng-repeat="(name, category) in categorys">
-    <li>
-        {{name}}<br/>
-        {{category.description}}
+<ul class="list-unstyled">
+    <li ng-repeat="(name, category) in categorys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{name}}
+            </div>
+            <div class="panel-body">
+                {{category.description}}
+            </div>
+            <div class="panel-footer">
+                <a href="{{ 'show_questions_by_category' | path }}" class="btn btn-primary">Répondre aux questions</a>
+            </div>
+        </div>
     </li>
 </ul>

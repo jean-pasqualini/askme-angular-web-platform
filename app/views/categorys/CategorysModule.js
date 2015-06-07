@@ -4,11 +4,12 @@ angular.module('app.category', ['ngRoute'])
     {
         $routeProvider.when('/package/:package/category/list', {
             templateUrl: '/views/categorys/list.html',
-            name: 'show_category_by_packages'
+            name: 'show_category_by_packages',
+            controller: 'CategorysController'
         });
     }])
 
-.controller('CategorysController', ['$scope', 'questionManager', function(questionsManager)
+.controller('CategorysController', ['$scope', 'questionManager', function($scope, questionsManager)
     {
          $scope.categorys = {
               film : {

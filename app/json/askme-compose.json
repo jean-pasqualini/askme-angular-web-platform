@@ -1,6 +1,9 @@
 {
   "category" :
   {
-     "test" : "/app/json/category/film.yml"
+     "test" : {
+       "file" : "/app/json/category/film.yml",
+       "description" : "les films"
+     }
   }
 }
