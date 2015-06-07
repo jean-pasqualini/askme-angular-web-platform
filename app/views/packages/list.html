@@ -1,0 +1,46 @@
+<h1>Questions package manager</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Filtres
+  </div>
+  <div class="panel-body">
+    <div class="">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="filtrer" ng-model="query"/>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <b>{{packages.length}}</b> packages correspondent à votre recherche
+  </div>
+</div>
+
+<ul class="list-unstyled">
+  <li ng-repeat="package in packages | filter:query">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{package.name}}
+      </div>
+      <div class="panel-body">
+        <p>
+          {{package.description}}
+        </p>
+        <div class="row">
+          <div class="col-xs-9">
+            <ul class="list-unstyled list-inline">
+              <li><b>{{package.downloads}}</b> Téléchargements</li>
+              <li><b>{{package.favers}}</b> Mise en favoris</li>
+            </ul>
+          </div>
+          <div class="col-xs-3">
+            <div class="pull-right">
+              <a href="{{package.action}}" class="btn btn-primary">Utiliser ce packages de questions</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </li>
+</ul>

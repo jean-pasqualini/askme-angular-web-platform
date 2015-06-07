@@ -1,15 +1,16 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'myApp.services'])
+angular.module('app.question', ['ngRoute', 'myApp.services'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
+  $routeProvider.when('/category/truc/question/show', {
+    name: 'show_questions_by_category',
+    templateUrl: 'views/questions/list.html',
+    controller: 'QuestionsController'
   });
 }])
 
-.controller('View1Ctrl', ['$scope', 'questionManager', function($scope, questionManager) {
+.controller('QuestionsController', ['$scope', 'questionManager', function($scope, questionManager) {
     $scope.questions = [
       {
         "question" : "Quel est ton nom ?",

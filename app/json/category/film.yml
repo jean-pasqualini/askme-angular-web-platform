@@ -1,0 +1,9 @@
+category: film
+questions:
+    -
+        question: 'Comment s''apelle le chien du docteur dans retour vers le futur ?'
+        answers:
+            - {value: Einstein,         correct: false}
+            - {value: John, correct: false}
+            - {value: Afdqf,        correct: true}
+            - {value: azdzadzadaz,                correct: false}
