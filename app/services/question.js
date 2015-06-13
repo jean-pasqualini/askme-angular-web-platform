@@ -2,29 +2,54 @@
 
 angular
     .module('myApp.services', ['ngResource', 'ngRoute'])
-    .factory('questionManager', ['$resource', 'githubManager', function($resource, githubManager)
-    {
-        /**
-        githubManager.getFile({
-            repo: "certificationy/symfony-pack",
-            file: "data/architecture.yml"
-        }, function(content)
-        {
-            alert(content);
-        });
-*/
-        return $resource('https://rawgit.com/certificationy/symfony-pack/master/data/architecture.yml', {}, {
-            get: {
-                transformResponse: function(yamlContent, headers)
-                {
-                    return jsyaml.load(yamlContent);
-                }
-            }
-        });
+    .config(['$resourceProvider', function($resourceProvider) {
+        // Don't strip trailing slashes from calculated URLs
+        //$resourceProvider.defaults.stripTrailingSlashes = false;
     }])
-    .factory('githubManager', ['$resource', function($resource)
+    .service('questionManager', ['$resource', '$q', 'githubContentManager', function($resource, $q, githubContentManager)
     {
-        return $resource('https://rawgit.com/:repo/master/:file', {
+        this.getCategoryContent = function()
+        {
+            var deferred = $q.defer();
+
+            githubContentManager.getFile({
+                repo: "certificationy/symfony-pack",
+                file: "data/architecture.yml"
+            }).then(function(content)
+            {
+                deferred.resolve(jsyaml.load(content.data));
+            });
+
+            return deferred.promise;
+        };
+
+        this.getCategoryList = function()
+        {
+            var deferred = $q.defer();
+
+            deferred.resolve({
+                film : {
+                    description: "une description",
+                    file: ""
+                }
+            });
+
+            /**
+            githubContentManager.getFile({
+                repo: "certificationy/symfony-pack",
+                file: "data/architecture.yml"
+            }).then(function(content)
+            {
+                deferred.resolve(jsyaml.load(content.data));
+            });
+             */
+
+            return deferred.promise;
+        };
+    }])
+    .factory('githubApiManager', ['$resource', function($resource)
+    {
+        return $resource('https://api.github.com/repos/:repo/contents/:file', {
             repo: "repo",
             file: "file"
         }, {
@@ -36,10 +61,17 @@ angular
             }
         });
     }])
+    .service('githubContentManager', ['$http', function($http)
+    {
+       this.getFile = function(repo, path)
+       {
+           return $http.get('https://raw.githubusercontent.com/certificationy/symfony-pack/master/data/architecture.yml');
+       };
+    }])
     .factory("packagistManager", ["$resource", function($resource)
     {
         //https://packagist.org/search.json?tags=locale
-        return $resource("json/packagist.json", {}, {
+        return $resource("https://packagist.org/search.json?tags=askme-compose", {}, {
             search: { method: "get" }
         });
     }])

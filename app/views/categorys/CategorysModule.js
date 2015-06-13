@@ -11,11 +11,9 @@ angular.module('app.category', ['ngRoute'])
 
 .controller('CategorysController', ['$scope', 'questionManager', function($scope, questionsManager)
     {
-         $scope.categorys = {
-              film : {
-                  description: "une description",
-                  file: ""
-              }
-         };
+         questionsManager.getCategoryList().then(function(categorys)
+         {
+             $scope.categorys = categorys;
+         });
     }])
 ;

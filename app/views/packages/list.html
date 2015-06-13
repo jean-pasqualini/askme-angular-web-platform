@@ -5,19 +5,24 @@
     Filtres
   </div>
   <div class="panel-body">
-    <div class="">
+    <form class="clearfix" ng-submit="search()">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="filtrer" ng-model="query"/>
+        <div class="col-xs-9">
+          <input type="text" class="form-control" placeholder="filtrer" ng-model="query"/>
+        </div>
+        <div class="col-xs-3">
+          <input type="button" class="btn btn-success btn-block" ng-click="search()" value="Chercher"/>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
   <div class="panel-footer">
-    <b>{{packagesFiltered.length}}</b> packages correspondent à votre recherche
+    <b>{{packages.length}}</b> packages correspondent à votre recherche
   </div>
 </div>
 
 <ul class="list-unstyled">
-  <li ng-repeat="package in packages | filter:query as packagesFiltered">
+  <li ng-repeat="package in packages">
     <div class="panel panel-default">
       <div class="panel-heading">
         {{package.name}}

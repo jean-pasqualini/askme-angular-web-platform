@@ -3,7 +3,7 @@
 angular.module('app.question', ['ngRoute', 'myApp.services'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/category/truc/question/show', {
+  $routeProvider.when('/:owner/:repo/:category/show', {
     name: 'show_questions_by_category',
     templateUrl: 'views/questions/list.html',
     controller: 'QuestionsController'
@@ -11,23 +11,9 @@ angular.module('app.question', ['ngRoute', 'myApp.services'])
 }])
 
 .controller('QuestionsController', ['$scope', 'questionManager', function($scope, questionManager) {
-    $scope.questions = [
-      {
-        "question" : "Quel est ton nom ?",
-        "answers": [
-          {
-            "value": "john",
-            "correct": false
-          },
-          {
-            "value": "jean",
-            "correct": false
-          }
-        ]
-      }
-    ];
+    $scope.questions = [];
 
-     questionManager.get().$promise.then(function(configuration) {
+     questionManager.getCategoryContent().then(function(configuration) {
        $scope.questions = configuration["questions"];
       });
 }]);

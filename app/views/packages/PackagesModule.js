@@ -13,14 +13,24 @@ angular.module('app.package', ['ngRoute', 'myApp.services'])
 .controller('PackagesController', ['$scope', 'packagistManager', 'urlGenerator', function($scope, packagistManager, urlGenerator) {
       $scope.packages = [];
 
-        packagistManager.search().$promise.then(function(configuration) {
-            _.each(configuration["results"], function(item)
-            {
-                item.action = urlGenerator.generate("show_category_by_packages", {});
+        var searchMethod = function(q)
+        {
+            packagistManager.search({q: q}).$promise.then(function(configuration) {
+                _.each(configuration["results"], function(item)
+                {
+                    item.action = urlGenerator.generate("show_category_by_packages", {});
+                });
+
+                $scope.packages = configuration["results"];
             });
+        };
 
-            $scope.packages = configuration["results"];
+        $scope.query = "";
 
-            $scope.query = "";
-        });
+        $scope.search = function()
+        {
+            searchMethod($scope.query);
+        };
+
+        searchMethod();
 }]);
