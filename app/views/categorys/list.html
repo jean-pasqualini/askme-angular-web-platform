@@ -9,7 +9,7 @@
                 {{category.description}}
             </div>
             <div class="panel-footer">
-                <a href="{{ 'show_questions_by_category' | path }}" class="btn btn-primary">Répondre aux questions</a>
+                <a href="{{ 'show_questions_by_category' | path : {category: name, owner: owner, repo: repo} }}" class="btn btn-primary">Répondre aux questions</a>
             </div>
         </div>
     </li>
