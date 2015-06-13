@@ -1,27 +1,27 @@
-<ul ng-repeat="question in questions" class="list-unstyled">
-    <li>
-                <div class="panel panel-default">
-                    <div class="panel-heading" ng-bind="question.question"></div>
-                    <form class="panel-body">
-                        <ul ng-repeat="answer in question.answers" class="list-unstyled">
-                            <li class="radio">
-                                <label>
-                                    <input type="radio" name="question_">
-                                    {{answer.value}}
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
+<form ng-submit="validateResponses($event)" action="#" method="post">
+    <ul ng-repeat="(questionId, question) in questions" class="list-unstyled">
+        <li>
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-bind="question.question"></div>
+                <div class="panel-body">
+                    <ul ng-repeat="(answerId, answer) in question.answers" class="list-unstyled">
+                        <li class="radio">
+                            <label>
+                                <input type="radio" name="question_{{questionId}}" ng-model="responses[questionId]" ng-value="answerId">
+                                {{answer.value}}
+                            </label>
+                        </li>
+                    </ul>
                 </div>
-    </li>
-</ul>
+            </div>
+        </li>
+    </ul>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="pull-right">
-            <a href="" class="btn btn-primary">Voir mon résultat</a>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-right">
+                <input type="submit" class="btn btn-primary" value="Voir mon résultat"/>
+            </div>
         </div>
     </div>
-</div>
-
-<span ng-bind="test"></span>
+</form>

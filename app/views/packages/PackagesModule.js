@@ -29,6 +29,7 @@ angular.module('app.package', ['ngRoute', 'myApp.services'])
                 $scope.packages = configuration["results"];
 
                 $scope.favorites = packagistManager.getFavoriteList();
+
             });
         };
 

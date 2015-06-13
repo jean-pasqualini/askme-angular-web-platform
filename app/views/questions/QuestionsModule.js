@@ -13,7 +13,16 @@ angular.module('app.question', ['ngRoute', 'myApp.services'])
 .controller('QuestionsController', ['$scope', '$routeParams', 'questionManager', function($scope, $routeParams, questionManager) {
     $scope.questions = [];
 
+        $scope.responses = [];
+
      questionManager.getCategoryContent($routeParams.owner + "/" + $routeParams.repo, $routeParams.category).then(function(configuration) {
        $scope.questions = configuration["questions"];
      });
+
+        $scope.validateResponses = function($event)
+        {
+            $event.preventDefault();
+
+            console.log($scope.responses);
+        };
 }]);
