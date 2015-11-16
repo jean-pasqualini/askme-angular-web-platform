@@ -1,0 +1,16 @@
+<table class="table">
+    <tr>
+        <th> Question</th>
+        <th> Ma Réponses </th>
+        <th> Valide ? </th>
+        <th> Solution </th>
+    </tr>
+    <tr ng-repeat="resultat in resultats">
+        <td> {{resultat.question}} </td>
+        <td> {{resultat.myResponse}} </td>
+        <td> {{resultat.isResponseValid}} </td>
+        <td> {{resultat.responsesValids}} </td>
+    </tr>
+</table>
+
+<button onclick="history.back();" class="btn btn-success">Retour</button>
