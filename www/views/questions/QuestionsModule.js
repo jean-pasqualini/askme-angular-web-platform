@@ -17,7 +17,17 @@ angular.module('app.question', ['ngRoute', 'myApp.services'])
         // On vérifie si la réponse est valide
         var isResponseValid = function(myResponse, question)
         {
-            return false;
+            var responsesValids = [];
+
+            _.each(question.answers, function(v, k, l)
+            {
+                if(v.correct)
+                {
+                    responsesValids.push(k);
+                }
+            });
+
+            return (JSON.stringify(responsesValids) == JSON.stringify([myResponse]));
         };
 
         // On retrouves la solution à la question

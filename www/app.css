@@ -28,3 +28,16 @@
   content: "";
   padding: 0;
 }
+
+.result-item {
+  color: white;
+  font-weight: bold;
+}
+
+.result-item-success {
+  background: green;
+}
+
+.result-item-error {
+  background: red;
+}

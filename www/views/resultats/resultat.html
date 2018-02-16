@@ -5,7 +5,7 @@
         <th> Valide ? </th>
         <th> Solution </th>
     </tr>
-    <tr ng-repeat="resultat in resultats">
+    <tr ng-repeat="resultat in resultats" ng-class="[resultat.isResponseValid ? 'result-item-success' : 'result-item-error', 'result-item']">
         <td> {{resultat.question}} </td>
         <td> {{resultat.myResponse}} </td>
         <td> {{resultat.isResponseValid}} </td>
